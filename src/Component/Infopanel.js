@@ -1,6 +1,6 @@
 import React from 'react';
-import GlobalStats from './Globalstate';
-import AllCountries from './All-Countries';
+import GlobalStats from './GlobalStats';
+import AllCountries from './AllCountries';
 
 export default function InfoPanel({currentScreen}) {
 
