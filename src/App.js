@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
      <Navbar/>
-     <Info currentScreen={screenConfig[0]}/>
      <FootNav screenConfig={screenConfig}/>
+     <Info currentScreen={screenConfig[0]}/>
 
     </div>
   );

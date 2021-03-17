@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth:1000,
     margin:'0 auto',
-    marginTop: 50
+    marginTop: 80
   },
   paper: {
     padding: theme.spacing(2),

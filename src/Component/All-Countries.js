@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 1000,
         margin: '0 auto',
-        marginTop: 50
+        marginTop: 80,
+        flexGrow: 1,
     },
     title: {
         textAlign: 'left'
     },
     table: {
-        height: 450,
-        overflowY: 'scroll',
+        height: "auto",
         display: 'block'
     }
 }));
 
 export default function AllCountries() {
-    const [globalData, setGlobalData] = useState({});
+    const [globalData, setGlobalData] = useState([{}]);
 
     useEffect(() => {
         async function getData() {
@@ -36,33 +44,60 @@ export default function AllCountries() {
 
     return (
         <div className={classes.root}>
-            <table className={classes.table}>
-                <thead>
-                    <tr className={classes.title}>
-                        <th>Country Name</th>
-                        <th>Total Cases</th>
-                        <th>Active Cases</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {globalData.map((key, ind) => {
-                        return (
-                            <tr key={ind}>
-                                <th className={classes.title}>
-                                    {globalData[ind].country}
-                                </th>
-                                <td>
-                                    {globalData[ind].cases}
-                                </td>
-                                <td>
-                                    {globalData[ind].active}
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
 
-        </div>
+          <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Country Name</TableCell>
+                <TableCell align="right">Total Cases</TableCell>
+                <TableCell align="right">Active Cases</TableCell>
+                <TableCell align="right">Deaths&nbsp;</TableCell>
+                <TableCell align="right">Population&nbsp;</TableCell>
+                <TableCell align="right">Recovered&nbsp;</TableCell>
+                <TableCell align="right">Tests&nbsp;</TableCell>
+                <TableCell align="right">Today Case&nbsp;</TableCell>
+                <TableCell align="right">Today Deaths&nbsp;</TableCell>
+                <TableCell align="right">Today Recovered&nbsp;</TableCell>
+
+
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {globalData.map((key,ind) => (
+                <TableRow key={ind}>
+                  <TableCell component="th" scope="row">  {globalData[ind].country}</TableCell>
+                  <TableCell align="right"> {globalData[ind].cases}</TableCell>
+                  <TableCell align="right"> {globalData[ind].active}</TableCell>
+                  <TableCell align="right"> {globalData[ind].deaths}</TableCell>
+                  <TableCell align="right"> {globalData[ind].population}</TableCell>
+                  <TableCell align="right"> {globalData[ind].recovered}</TableCell>
+                  <TableCell align="right"> {globalData[ind].tests}</TableCell>
+                  <TableCell align="right"> {globalData[ind].todayCases}</TableCell>
+                  <TableCell align="right"> {globalData[ind].todayDeaths}</TableCell>
+                  <TableCell align="right"> {globalData[ind].todayRecovered}</TableCell>
+
+
+
+
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+
+
+
+
+            
+          </Grid>
+          </Grid>
+          
+
+          </div>
+        
     );
+
 }
